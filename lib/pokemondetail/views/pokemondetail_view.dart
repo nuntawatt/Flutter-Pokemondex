@@ -43,7 +43,7 @@ class _PokemondetailViewState extends State<PokemondetailView> {
       appBar: AppBar(
         title: Text(widget.pokemonListItem.name.toUpperCase()),
         backgroundColor: Colors.blueGrey[900],
-        foregroundColor: Colors.yellowAccent,
+        foregroundColor: Colors.yellowAccent, // Gold
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())

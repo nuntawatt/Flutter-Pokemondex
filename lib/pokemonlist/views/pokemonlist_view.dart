@@ -57,10 +57,10 @@ class _PokemonListState extends State<PokemonList> {
             child: GridView.builder(
               padding: const EdgeInsets.all(20),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-                childAspectRatio: 0.9,
+                crossAxisCount: 4, // Row
+                crossAxisSpacing: 20, // Column
+                mainAxisSpacing: 20, // Row
+                childAspectRatio: 0.9, // Width:Height ratio
               ),
               itemCount: _pokemonList.length,
               itemBuilder: (context, index) {
