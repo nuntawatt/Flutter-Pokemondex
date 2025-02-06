@@ -39,50 +39,68 @@ class _PokemondetailViewState extends State<PokemondetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(widget.pokemonListItem.name.toUpperCase()),
-        backgroundColor: const Color.fromARGB(255, 39, 52, 65),
-        foregroundColor: const Color.fromARGB(255, 238, 238, 98),
+        backgroundColor: Colors.blueGrey[900],
+        foregroundColor: Colors.yellowAccent,
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : Container(
+          : Padding(
               padding: const EdgeInsets.all(16),
-              color: Colors.black,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // Image Container
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[900],
+                      color: Colors.blueGrey[800],
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
+                          color: Colors.blueAccent.withOpacity(0.5),
                           blurRadius: 10,
                           offset: const Offset(0, 5),
                         ),
                       ],
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Image.network(
-                        _pokemonData?['sprites']['other']['official-artwork']
-                                ['front_default'] ??
-                            '',
-                        height: 200,
-                      ),
+                    padding: const EdgeInsets.all(16),
+                    child: Image.network(
+                      _pokemonData?['sprites']['other']['official-artwork']
+                              ['front_default'] ??
+                          '',
+                      height: 200,
                     ),
                   ),
                   const SizedBox(height: 20),
+                  // Pokémon Type
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: (_pokemonData?['types'] as List<dynamic>)
+                        .map((type) => Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 4),
+                              child: Chip(
+                                label: Text(
+                                  type['type']['name'].toUpperCase(),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                                backgroundColor: Colors.purpleAccent,
+                              ),
+                            ))
+                        .toList(),
+                  ),
+                  const SizedBox(height: 15),
+                  // Height & Weight
                   Text(
-                    'Type: ${_pokemonData?['types'][0]['type']['name'].toUpperCase()}',
-                    style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                    "Height: ${_pokemonData?['height']}m  |  Weight: ${_pokemonData?['weight']}kg",
+                    style: const TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   const SizedBox(height: 20),
+                  // Base Stats
                   const Text(
                     'Base Stats',
                     style: TextStyle(
@@ -94,7 +112,7 @@ class _PokemondetailViewState extends State<PokemondetailView> {
                   Column(
                     children: (_pokemonData?['stats'] as List<dynamic>)
                         .map((stat) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 6),
+                              padding: const EdgeInsets.symmetric(vertical: 4),
                               child: Row(
                                 children: [
                                   SizedBox(

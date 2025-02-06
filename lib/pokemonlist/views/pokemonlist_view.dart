@@ -51,19 +51,15 @@ class _PokemonListState extends State<PokemonList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black87,
-      appBar: AppBar(
-        title: const Text("Pokedex"),
-        backgroundColor: const Color.fromARGB(255, 183, 165, 45),
-      ),
       body: Column(
         children: [
           Expanded(
             child: GridView.builder(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(20),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
                 childAspectRatio: 0.9,
               ),
               itemCount: _pokemonList.length,
@@ -97,7 +93,7 @@ class _PokemonListState extends State<PokemonList> {
                             shape: BoxShape.circle,
                             color: Colors.white.withOpacity(0.2),
                           ),
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(20),
                           child: Image.network(imageUrl, width: 80, height: 80),
                         ),
                         const SizedBox(height: 5),
@@ -125,7 +121,7 @@ class _PokemonListState extends State<PokemonList> {
           ),
           if (_nextPageUrl.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(20),
               child: ElevatedButton(
                 onPressed: _isLoading ? null : loadData,
                 style: ElevatedButton.styleFrom(
